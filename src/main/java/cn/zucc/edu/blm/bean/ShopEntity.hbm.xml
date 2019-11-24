@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.ShopEntity" table="shop" schema="blm">
+        <id name="shopId" column="shop_id"/>
+        <property name="shopName" column="shop_name"/>
+        <property name="shopPwd" column="shop_pwd"/>
+        <property name="shopAddress" column="shop_address"/>
+        <property name="shopTel" column="shop_tel"/>
+        <property name="shopCore" column="shop_core"/>
+        <property name="shopNotice" column="shop_notice"/>
+        <property name="shopTrademark" column="shop_trademark"/>
+        <property name="shopStatus" column="shop_status"/>
+<!--        <set name="activitiesByShopId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="shop_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.ActivityEntity"/>-->
+<!--        </set>-->
+<!--        <set name="ordersByShopId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="shop_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.OrdersEntity"/>-->
+<!--        </set>-->
+<!--        <set name="recipesByShopId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="shop_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.RecipeEntity"/>-->
+<!--        </set>-->
+<!--        <set name="shopEvaluatesByShopId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="shop_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.ShopEvaluateEntity"/>-->
+<!--        </set>-->
+    </class>
+</hibernate-mapping>

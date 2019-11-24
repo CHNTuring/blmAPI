@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.OrderInfEntity" table="order_inf" schema="blm">
+        <id name="orderInfId" column="order_inf_id"/>
+        <property name="recipeId" column="recipe_id" insert="false" update="false"/>
+        <property name="orderId" column="order_id" insert="false" update="false"/>
+        <property name="listId" column="list_id"/>
+        <property name="orderRecipeNumber" column="order_recipe_number"/>
+<!--        <many-to-one name="recipeByRecipeId" class="cn.zucc.edu.blm.bean.RecipeEntity" insert="false" update="false">-->
+<!--            <column name="recipe_id" not-null="true"/>-->
+<!--        </many-to-one>-->
+<!--        <many-to-one name="ordersByOrderId" class="cn.zucc.edu.blm.bean.OrdersEntity" insert="false" update="false">-->
+<!--            <column name="order_id" not-null="true" />-->
+<!--        </many-to-one>-->
+    </class>
+</hibernate-mapping>

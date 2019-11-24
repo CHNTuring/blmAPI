@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://cdb-pllfd5fy.bj.tencentcdb.com:10146/blm</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <mapping class="cn.zucc.edu.blm.bean.ActivityEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/ActivityEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderInfEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderInfEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrdersEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrdersEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.RecipeEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/RecipeEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.ShopEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/ShopEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.ShopEvaluateEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/ShopEvaluateEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.UserEntity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/UserEntity.hbm.xml"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

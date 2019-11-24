@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.OrdersEntity" table="orders" schema="blm">
+        <id name="orderId" column="order_id"/>
+        <property name="shopId" column="shop_id" insert="false" update="false"/>
+        <property name="userId" column="user_id" insert="false" update="false"/>
+        <property name="temporaryId" column="temporary_id"/>
+        <property name="orderStartTime" column="order_start_time"/>
+        <property name="orderFinishTime" column="order_finish_time"/>
+        <property name="orderStatus" column="order_status"/>
+        <property name="orderRemark" column="order_remark"/>
+<!--        <many-to-one name="shopByShopId" class="cn.zucc.edu.blm.bean.ShopEntity" insert="false" update="false">-->
+<!--            <column name="shop_id" not-null="true"/>-->
+<!--        </many-to-one>-->
+<!--        <many-to-one name="userByUserId" class="cn.zucc.edu.blm.bean.UserEntity" insert="false" update="false">-->
+<!--            <column name="user_id" not-null="true"/>-->
+<!--        </many-to-one>-->
+<!--        <set name="orderInfsByOrderId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="order_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.OrderInfEntity"/>-->
+<!--        </set>-->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /blm
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://cdb-pllfd5fy.bj.tencentcdb.com:10146/blm
+    username: root
+    password: wangsong990315
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true

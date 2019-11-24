@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.UserEntity" table="user" schema="blm">
+        <id name="userId" column="user_id"/>
+        <property name="userName" column="user_name"/>
+        <property name="userPwd" column="user_pwd"/>
+        <property name="userTel" column="user_tel"/>
+        <property name="userAddress" column="user_address"/>
+        <property name="userImage" column="user_image"/>
+<!--        <set name="ordersByUserId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="user_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.OrdersEntity"/>-->
+<!--        </set>-->
+<!--        <set name="shopEvaluatesByUserId" inverse="true">-->
+<!--            <key>-->
+<!--                <column name="user_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many not-found="ignore" class="cn.zucc.edu.blm.bean.ShopEvaluateEntity"/>-->
+<!--        </set>-->
+    </class>
+</hibernate-mapping>
