@@ -25,17 +25,12 @@ public class OrderController {
 	private OrderDao orderDao;
 
 	@GetMapping("/getOrderList")
-	public String say(@RequestParam(value = "userId") int userId) {
+	public List<OrdersEntity> getOrderList(@RequestParam(value = "userId") int userId) {
 		OrdersEntity ordersEntity=new OrdersEntity();
 		ordersEntity.setUserId(userId);
 		org.springframework.data.domain.Example example = Example.of(ordersEntity);
 		List<OrdersEntity> lst=new ArrayList<>();
 		lst=orderDao.findByUserId(userId);
-		ListObject listObject=new ListObject();
-		listObject.setCount(lst.size());
-		listObject.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-		listObject.setItems(lst);
-		String ResponseString= JackJsonUtils.toJson(listObject);
-		return  ResponseString;
+		return lst;
 	}
 }

@@ -2,6 +2,7 @@ package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.OrderDao;
 import cn.zucc.edu.blm.Dao.OrderInfDao;
+import cn.zucc.edu.blm.bean.OrderInfEntity;
 import cn.zucc.edu.blm.bean.OrdersEntity;
 import cn.zucc.edu.blm.json.bean.ListObject;
 import cn.zucc.edu.blm.json.status.StatusHouse;
@@ -26,14 +27,9 @@ public class OrderInfController {
     private OrderInfDao orderInfDao;
 
     @GetMapping("/getOrderInfList")
-    public String getOrderInfList(@RequestParam(value = "orderId") int orderId){
+    public List<OrderInfEntity> getOrderInfList(@RequestParam(value = "orderId") int orderId){
         List lst=new ArrayList();
         lst=orderInfDao.findByOrderId(orderId);
-        ListObject listObject=new ListObject();
-        listObject.setCount(lst.size());
-        listObject.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-        listObject.setItems(lst);
-        String ResponseString= JackJsonUtils.toJson(listObject);
-        return  ResponseString;
+        return  lst;
     }
 }

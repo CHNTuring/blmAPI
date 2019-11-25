@@ -2,6 +2,7 @@ package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.ShopDao;
 import cn.zucc.edu.blm.Dao.UserDao;
+import cn.zucc.edu.blm.bean.UserEntity;
 import cn.zucc.edu.blm.json.bean.ListObject;
 import cn.zucc.edu.blm.json.bean.SingleObject;
 import cn.zucc.edu.blm.json.status.StatusHouse;
@@ -23,14 +24,8 @@ public class UserController {
     private UserDao userDao;
 
     @GetMapping("/getUser")
-    public String getShopList(@RequestParam(value = "userId") int userId){
-
+    public UserEntity getUser(@RequestParam(value = "userId") int userId){
         Optional optional =userDao.findById(userId);
-
-        SingleObject singleObject=new SingleObject();
-        singleObject.setData(optional.orElse(null));
-        singleObject.setStatusObject(StatusHouse.COMMON_STATUS_OK);
-        String ResponseString= JackJsonUtils.toJson(singleObject);
-        return  ResponseString;
+        return  (UserEntity) optional.orElse(null);
     }
 }
