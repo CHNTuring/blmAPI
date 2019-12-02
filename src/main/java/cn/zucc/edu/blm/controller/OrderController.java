@@ -31,4 +31,13 @@ public class OrderController {
 		lst=orderDao.findByUserId(userId);
 		return lst;
 	}
+
+	@GetMapping("/getOrderListByShopId")
+	public List<Orders> getOrderListByShopId(@RequestParam(value = "shopId") int shopId){
+		Orders ordersEntity=new Orders();
+		ordersEntity.setShopId(shopId);
+		Example example=Example.of(ordersEntity);
+		List<Orders> lst=orderDao.findByShopId(shopId);
+		return lst;
+	}
 }
