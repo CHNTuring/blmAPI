@@ -15,6 +15,7 @@ import java.util.List;
  * @Controller + @ResponseBody = @RestController
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/Order")
 public class OrderController {
 

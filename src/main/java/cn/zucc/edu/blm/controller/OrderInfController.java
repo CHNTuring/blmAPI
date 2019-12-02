@@ -3,10 +3,7 @@ package cn.zucc.edu.blm.controller;
 import cn.zucc.edu.blm.Dao.OrderInfDao;
 import cn.zucc.edu.blm.bean.OrderInf;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
  *  订单详情
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/OrderInf")
 public class OrderInfController {
     @Autowired
