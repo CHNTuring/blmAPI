@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.Shop" table="shop" schema="blm">
+        <id name="shopId" column="shop_id"/>
+        <property name="shopName" column="shop_name"/>
+        <property name="shopPwd" column="shop_pwd"/>
+        <property name="shopAddress" column="shop_address"/>
+        <property name="shopTel" column="shop_tel"/>
+        <property name="shopCore" column="shop_core"/>
+        <property name="shopNotice" column="shop_notice"/>
+        <property name="shopTrademark" column="shop_trademark"/>
+        <property name="shopStatus" column="shop_status"/>
+    </class>
+</hibernate-mapping>

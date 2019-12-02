@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.OrderSum" table="order_sum" schema="blm">
+        <id name="orderId" column="order_id"/>
+        <property name="sumRecipeRecipePriceOrderInfOrderRecipeNumber"
+                  column="Sum(recipe.recipe_price*order_inf.order_recipe_number)"/>
+    </class>
+</hibernate-mapping>

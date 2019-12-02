@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.Orders" table="orders" schema="blm">
+        <id name="orderId" column="order_id"/>
+        <property name="shopId" column="shop_id"/>
+        <property name="userId" column="user_id"/>
+        <property name="temporaryId" column="temporary_id"/>
+        <property name="orderStartTime" column="order_start_time"/>
+        <property name="orderFinishTime" column="order_finish_time"/>
+        <property name="orderStatus" column="order_status"/>
+        <property name="orderRemark" column="order_remark"/>
+    </class>
+</hibernate-mapping>

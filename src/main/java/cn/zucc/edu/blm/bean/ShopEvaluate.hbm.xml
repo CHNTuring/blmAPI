@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.ShopEvaluate" table="shop_evaluate" schema="blm">
+        <id name="shopEvaluateId" column="shop_evaluate_id"/>
+        <property name="shopId" column="shop_id"/>
+        <property name="userId" column="user_id"/>
+        <property name="shopEvaluateOrder" column="shop_evaluate_order"/>
+        <property name="shopGrade" column="shop_grade"/>
+        <property name="shopEvaluateContent" column="shop_evaluate_content"/>
+        <property name="shopEvaluateImage" column="shop_evaluate_image"/>
+    </class>
+</hibernate-mapping>

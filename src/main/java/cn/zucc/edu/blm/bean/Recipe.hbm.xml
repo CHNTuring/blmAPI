@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.zucc.edu.blm.bean.Recipe" table="recipe" schema="blm">
+        <id name="recipeId" column="recipe_id"/>
+        <property name="shopId" column="shop_id"/>
+        <property name="recipeName" column="recipe_name"/>
+        <property name="recipePrice" column="recipe_price"/>
+        <property name="monthlySale" column="monthly_sale"/>
+        <property name="recipeNotice" column="recipe_notice"/>
+        <property name="recipeImage" column="recipe_image"/>
+        <property name="recipeRemain" column="recipe_remain"/>
+        <property name="recipeDiscount" column="recipe_discount"/>
+        <property name="recipeStatus" column="recipe_status"/>
+    </class>
+</hibernate-mapping>

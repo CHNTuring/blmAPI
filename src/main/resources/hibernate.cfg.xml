@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://cdb-pllfd5fy.bj.tencentcdb.com:10146/blm</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <mapping class="cn.zucc.edu.blm.bean.ActivityEntity"/>
+      <mapping class="cn.zucc.edu.blm.bean.ActivityEntity"/>
       <mapping resource="cn/zucc/edu/blm/bean/ActivityEntity.hbm.xml"/>
       <mapping class="cn.zucc.edu.blm.bean.OrderInfEntity"/>
       <mapping resource="cn/zucc/edu/blm/bean/OrderInfEntity.hbm.xml"/>
@@ -20,6 +20,22 @@
       <mapping resource="cn/zucc/edu/blm/bean/ShopEvaluateEntity.hbm.xml"/>
       <mapping class="cn.zucc.edu.blm.bean.UserEntity"/>
       <mapping resource="cn/zucc/edu/blm/bean/UserEntity.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.Activity"/>
+      <mapping resource="cn/zucc/edu/blm/bean/Activity.hbm.xml"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderInf.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderInf"/>
+      <mapping class="cn.zucc.edu.blm.bean.Orders"/>
+      <mapping resource="cn/zucc/edu/blm/bean/Orders.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.Recipe"/>
+      <mapping resource="cn/zucc/edu/blm/bean/Recipe.hbm.xml"/>
+      <mapping resource="cn/zucc/edu/blm/bean/Shop.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.Shop"/>
+      <mapping resource="cn/zucc/edu/blm/bean/ShopEvaluate.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.ShopEvaluate"/>
+      <mapping resource="cn/zucc/edu/blm/bean/User.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.User"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderSum"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderSum.hbm.xml"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

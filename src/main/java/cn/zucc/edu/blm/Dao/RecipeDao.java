@@ -10,4 +10,5 @@ public interface RecipeDao extends JpaRepository<RecipeEntity,Integer> {
 
     public List<RecipeEntity> findByShopId(int shopId);
 
+
 }
