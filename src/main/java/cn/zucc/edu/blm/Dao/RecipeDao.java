@@ -1,14 +1,13 @@
 package cn.zucc.edu.blm.Dao;
 
-import cn.zucc.edu.blm.bean.OrdersEntity;
-import cn.zucc.edu.blm.bean.RecipeEntity;
+import cn.zucc.edu.blm.bean.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RecipeDao extends JpaRepository<RecipeEntity,Integer> {
+public interface RecipeDao extends JpaRepository<Recipe,Integer> {
 
-    public List<RecipeEntity> findByShopId(int shopId);
+    public List<Recipe> findByShopId(int shopId);
 
 
 }
