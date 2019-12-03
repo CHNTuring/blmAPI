@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://cdb-pllfd5fy.bj.tencentcdb.com:10146/blm</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-      <mapping class="cn.zucc.edu.blm.bean.ActivityEntity"/>
+    <mapping class="cn.zucc.edu.blm.bean.ActivityEntity"/>
       <mapping resource="cn/zucc/edu/blm/bean/ActivityEntity.hbm.xml"/>
       <mapping class="cn.zucc.edu.blm.bean.OrderInfEntity"/>
       <mapping resource="cn/zucc/edu/blm/bean/OrderInfEntity.hbm.xml"/>

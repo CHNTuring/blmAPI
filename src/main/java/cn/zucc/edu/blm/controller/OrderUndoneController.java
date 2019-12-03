@@ -18,7 +18,7 @@ public class OrderUndoneController {
 
     @GetMapping("/getOrderUndoneList")
     public List<OrderUndone> getOrderUndoneList(@RequestParam(value = "shopId")int shopId,@RequestParam(value = "orderId")int orderId){
-            return  orderUndoneDao.findByShopIdAndOrderStatusAndOrderIdAfter(shopId,"下单",orderId);
+            return  orderUndoneDao.getOrderUndoneListdao(shopId,orderId);
     }
 
     @GetMapping("/getOrderDoneList")

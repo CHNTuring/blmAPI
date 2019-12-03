@@ -24,4 +24,6 @@ public class OrderInfController {
         lst=orderInfDao.findByOrderId(orderId);
         return  lst;
     }
+
+
 }

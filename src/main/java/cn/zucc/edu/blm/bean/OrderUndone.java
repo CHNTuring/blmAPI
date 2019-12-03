@@ -8,11 +8,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "order_undone", schema = "blm")
 public class OrderUndone {
-    @Id
+
 
     private int orderId;
     private Timestamp orderStartTime;
     private Integer temporaryId;
+    @Id
+
     private Integer listId;
     private String recipeName;
     private Integer orderRecipeNumber;
