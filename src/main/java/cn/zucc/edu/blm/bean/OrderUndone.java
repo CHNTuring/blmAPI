@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
+@IdClass(OrderUndonePK.class)
 @Table(name = "order_undone", schema = "blm")
 public class OrderUndone {
 
@@ -13,8 +14,6 @@ public class OrderUndone {
     private int orderId;
     private Timestamp orderStartTime;
     private Integer temporaryId;
-    @Id
-
     private Integer listId;
     private String recipeName;
     private Integer orderRecipeNumber;
@@ -25,7 +24,7 @@ public class OrderUndone {
     private String orderStatus;
     private Integer shopId;
 
-    @Basic
+    @Id
     @Column(name = "order_id")
     public int getOrderId() {
         return orderId;
@@ -55,7 +54,7 @@ public class OrderUndone {
         this.temporaryId = temporaryId;
     }
 
-    @Basic
+    @Id
     @Column(name = "list_id")
     public Integer getListId() {
         return listId;
