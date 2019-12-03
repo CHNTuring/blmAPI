@@ -29,4 +29,14 @@ public class RecipeController {
         Optional optional=recipeDao.findById(recipeId);
         return  (Recipe) optional.orElse(null);
     }
+
+    @GetMapping("/getRecipeIdList")
+    public  List<Integer> getRecipeIdList(@RequestParam(value = "shopId") int shopId){
+        List<Integer> response=new ArrayList<>();
+        List<Recipe> lst=recipeDao.findByShopId(shopId);
+        for(Recipe a:lst){
+            response.add(a.getRecipeId());
+        }
+        return response;
+    }
 }
