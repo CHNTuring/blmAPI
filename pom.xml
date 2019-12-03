@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.zucc.edu</groupId>
     <artifactId>blm</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>blm</name>
     <description>BLM project for Spring Boot</description>
 
