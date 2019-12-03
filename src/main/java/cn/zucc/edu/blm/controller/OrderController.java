@@ -2,6 +2,7 @@ package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.OrderDao;
 import cn.zucc.edu.blm.bean.Orders;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
@@ -47,4 +48,20 @@ public class OrderController {
 		return lst;
 	}
 
+	@GetMapping("/getOrderListId")
+	public List<Integer> getOrderListId(@RequestParam(value = "userId")int userId){
+		List<Orders> lst=new ArrayList<>();
+		List<Integer> response=new ArrayList<>();
+		lst=orderDao.findByUserId(userId);
+		for(Orders a:lst){
+			response.add(a.getOrderId());
+		}
+
+		return response;
+	}
+
+	@GetMapping("/getOrder")
+	public Orders getOrder(@RequestParam(value = "OrderId")int orderId){
+		return orderDao.findById(orderId).orElse(null);
+	}
 }

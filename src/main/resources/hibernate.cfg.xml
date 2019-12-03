@@ -36,6 +36,14 @@
       <mapping class="cn.zucc.edu.blm.bean.User"/>
       <mapping class="cn.zucc.edu.blm.bean.OrderSum"/>
       <mapping resource="cn/zucc/edu/blm/bean/OrderSum.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderRecipe"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderRecipe.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.Evaluation"/>
+      <mapping resource="cn/zucc/edu/blm/bean/Evaluation.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderInformation"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderInformation.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.OrderUndone"/>
+      <mapping resource="cn/zucc/edu/blm/bean/OrderUndone.hbm.xml"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
