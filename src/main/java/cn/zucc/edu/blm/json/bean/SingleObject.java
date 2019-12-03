@@ -15,6 +15,4 @@ public class SingleObject extends AbstractJsonObject {
 		this.data = data;
 	}
 
-
-
 }
