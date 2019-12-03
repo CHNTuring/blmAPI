@@ -9,4 +9,6 @@ public interface OrderDao extends JpaRepository<Orders,Integer> {
 
     public List<Orders> findByUserId(int userId);
 
+    public List<Orders> findByShopId(int shopId);
+
 }
