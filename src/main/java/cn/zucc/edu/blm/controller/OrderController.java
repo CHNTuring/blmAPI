@@ -32,12 +32,19 @@ public class OrderController {
 		return lst;
 	}
 
-	@GetMapping("/getOrderListByShopId")
-	public List<Orders> getOrderListByShopId(@RequestParam(value = "shopId") int shopId){
+	@GetMapping("/getOrderListDone")
+	public List<Orders> getOrderListDone(@RequestParam(value = "shopId") int shopId){
 		Orders ordersEntity=new Orders();
 		ordersEntity.setShopId(shopId);
 		Example example=Example.of(ordersEntity);
-		List<Orders> lst=orderDao.findByShopId(shopId);
+		List<Orders> lst=orderDao.findByShopIdandAndOrderStatus(shopId,"完成");
 		return lst;
 	}
+
+	@GetMapping("/getOrderListUndone")
+	public List<Orders> getOrderListUndone(@RequestParam(value = "shopId")int shopId){
+		List<Orders> lst=orderDao.findByShopIdandAndOrderStatus(shopId,"下单");
+		return lst;
+	}
+
 }
