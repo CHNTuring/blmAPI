@@ -37,13 +37,13 @@ public class OrderController {
 		Orders ordersEntity=new Orders();
 		ordersEntity.setShopId(shopId);
 		Example example=Example.of(ordersEntity);
-		List<Orders> lst=orderDao.findByShopIdandAndOrderStatus(shopId,"完成");
+		List<Orders> lst=orderDao.findByShopIdAndOrderStatus(shopId,"完成");
 		return lst;
 	}
 
 	@GetMapping("/getOrderListUndone")
 	public List<Orders> getOrderListUndone(@RequestParam(value = "shopId")int shopId){
-		List<Orders> lst=orderDao.findByShopIdandAndOrderStatus(shopId,"下单");
+		List<Orders> lst=orderDao.findByShopIdAndOrderStatus(shopId,"下单");
 		return lst;
 	}
 
