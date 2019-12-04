@@ -39,4 +39,5 @@ public class ShopController {
     public Shop getShopById(@RequestParam(value = "shopId") int shopId){
         return shopDao.findById(shopId).orElse(null);
     }
+
 }
