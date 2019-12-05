@@ -18,9 +18,17 @@ public class RecipeController {
 
     @GetMapping("/getRecipeList")
     public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId){
-        List lst=new ArrayList();
+        List<Recipe> lst=new ArrayList();
         lst=recipeDao.findByShopId(shopId);
+        for(int i=0;i<lst.size();i++){
+            lst.get(i).setRecipeImage(null);
+        }
         return  lst;
+    }
+
+    @GetMapping("/getRecipeImage")
+    public Recipe getRecipeImage(@RequestParam(value = "recipeId") int recipeId){
+        return recipeDao.findById(recipeId).orElse(null);
     }
 
     @GetMapping("/getRecipe")

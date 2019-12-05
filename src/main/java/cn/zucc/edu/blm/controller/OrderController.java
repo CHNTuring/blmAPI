@@ -72,12 +72,14 @@ public class OrderController {
 		orders.setShopId(shopId);
 		orders.setUserId(userId);
 		orders.setOrderRemark(orderRemark);
-		orders.setOrderStartTime(new Timestamp(System.currentTimeMillis()));
+		orders.setOrderStartTime(new Timestamp(System.currentTimeMillis()+14*60*60*1000));
 		orders.setOrderStatus("下单");
 		int tempId=orderDao.getMaxTemp(shopId);
 		orders.setTemporaryId(tempId+1);
 
-		return orderDao.save(orders).getOrderId();
+		orderDao.save(orders);
+
+		return orderDao.getMaxOrderId();
 	}
 
 }

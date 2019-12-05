@@ -9,7 +9,6 @@ import java.util.Objects;
 @Table(name = "order_sum", schema = "blm", catalog = "")
 public class OrderSum {
     @Id
-
     private int orderId;
     private Integer shopId;
     private String shopName;

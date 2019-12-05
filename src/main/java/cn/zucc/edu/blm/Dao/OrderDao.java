@@ -16,4 +16,7 @@ public interface OrderDao extends JpaRepository<Orders,Integer> {
 
     @Query(value = "SELECT MAX(temporary_id) FROM orders WHERE shop_id",nativeQuery = true)
     Integer getMaxTemp(int shopId);
+
+    @Query(value = "SELECT MAX(order_id) FROM orders",nativeQuery = true)
+    Integer getMaxOrderId();
 }
