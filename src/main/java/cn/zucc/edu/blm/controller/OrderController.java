@@ -82,4 +82,12 @@ public class OrderController {
 		return orderDao.getMaxOrderId();
 	}
 
+	@GetMapping("/updateOrderStatus")
+	public void updateOrderStatus(int orderId){
+		Orders orders=new Orders();
+		orders.setOrderId(orderId);
+		orders.setOrderStatus("收货");
+		orderDao.save(orders);
+	}
+
 }
