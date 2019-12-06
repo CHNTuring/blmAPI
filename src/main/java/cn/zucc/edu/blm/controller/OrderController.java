@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by YL
@@ -84,10 +85,14 @@ public class OrderController {
 
 	@GetMapping("/updateOrderStatus")
 	public void updateOrderStatus(int orderId){
-		Orders orders=new Orders();
-		orders.setOrderId(orderId);
-		orders.setOrderStatus("完成");
-		orderDao.save(orders);
+		Optional<Orders> ordersOptional=orderDao.findById(orderId);
+		if(ordersOptional.isPresent()){
+			Orders orders=ordersOptional.get();
+			orders.setOrderFinishTime(new Timestamp(System.currentTimeMillis()+14*60*60*1000));
+			orders.setOrderStatus("完成");
+			orderDao.save(orders);
+		}
+
 	}
 
 }
