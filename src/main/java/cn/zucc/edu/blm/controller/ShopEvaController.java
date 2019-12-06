@@ -17,7 +17,7 @@ public class ShopEvaController  {
     private ShopEvaDao shopEvaDao;
 
     @GetMapping("/getShopEva")
-    public List<ShopEva> getShopEva(@RequestParam(value = "ShopId")int shopId) {
+    public List<ShopEva> getShopEva(@RequestParam(value = "shopId")int shopId) {
         return shopEvaDao.findByShopId(shopId);
     }
 }

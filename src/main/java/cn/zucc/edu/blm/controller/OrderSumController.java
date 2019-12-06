@@ -34,10 +34,9 @@ public class OrderSumController {
 
     @GetMapping("/getOrderSumList")
     public List<OrderSum> getOrderSumList(@RequestParam(value = "userId")int userId){
-        List<OrderSum> lst=new ArrayList<>();
-        lst=orderSumDao.findAll();
-        for(int i=0;i<lst.size();i++){
-            lst.get(i).setShopTrademark(null);
+        List<OrderSum> lst=orderSumDao.findByUserId(userId);
+        for (OrderSum orderSum : lst) {
+            orderSum.setShopTrademark(null);
         }
         return lst;
     }
