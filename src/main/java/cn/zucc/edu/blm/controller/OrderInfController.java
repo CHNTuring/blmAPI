@@ -25,5 +25,16 @@ public class OrderInfController {
         return  lst;
     }
 
+    @GetMapping("/addOrderInf")
+    public void addOrderInf(@RequestParam(value = "recipe_id")int recipe_id,@RequestParam(value = "order_id")int order_id,
+                            @RequestParam(value = "list_id")int list_id,@RequestParam(value = "order_recipe_number")int order_recipe_number){
+
+        OrderInf orderInf=new OrderInf();
+        orderInf.setRecipeId(recipe_id);
+        orderInf.setListId(list_id);
+        orderInf.setOrderId(order_id);
+        orderInf.setOrderRecipeNumber(order_recipe_number);
+        orderInfDao.save(orderInf);
+    }
 
 }

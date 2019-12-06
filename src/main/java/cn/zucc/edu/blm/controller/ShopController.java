@@ -18,10 +18,20 @@ public class ShopController {
 
     @GetMapping("/getShopList")
     public List<Shop> getShopList(){
-        List lst=new ArrayList();
+        List<Shop> lst=new ArrayList();
         lst=shopDao.findAll();
+        for(int i=0;i<lst.size();i++){
+            lst.get(i).setShopTrademark(null);
+        }
         return  lst;
     }
+
+    @GetMapping("/getTrademarkById")
+    public byte[] getTrademarkById(@RequestParam(value = "shopId")int shopId){
+        Shop shop=shopDao.findById(shopId).orElse(null);
+        return shop.getShopTrademark();
+    }
+
 
     @GetMapping("/getShopIdList")
     public List<Integer> getShopIdList(){

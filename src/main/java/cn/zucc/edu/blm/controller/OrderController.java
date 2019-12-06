@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,4 +65,29 @@ public class OrderController {
 	public Orders getOrder(@RequestParam(value = "OrderId")int orderId){
 		return orderDao.findById(orderId).orElse(null);
 	}
+
+	@GetMapping("/addOrders")
+	public Integer addOrders(@RequestParam(value = "shopId")int shopId,@RequestParam(value = "userId")int userId,@RequestParam(value = "orderRemark")String orderRemark){
+		Orders orders=new Orders();
+		orders.setShopId(shopId);
+		orders.setUserId(userId);
+		orders.setOrderRemark(orderRemark);
+		orders.setOrderStartTime(new Timestamp(System.currentTimeMillis()+14*60*60*1000));
+		orders.setOrderStatus("下单");
+		int tempId=orderDao.getMaxTemp(shopId);
+		orders.setTemporaryId(tempId+1);
+
+		orderDao.save(orders);
+
+		return orderDao.getMaxOrderId();
+	}
+
+	@GetMapping("/updateOrderStatus")
+	public void updateOrderStatus(int orderId){
+		Orders orders=new Orders();
+		orders.setOrderId(orderId);
+		orders.setOrderStatus("收货");
+		orderDao.save(orders);
+	}
+
 }

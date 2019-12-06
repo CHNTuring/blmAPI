@@ -44,6 +44,7 @@
       <mapping resource="cn/zucc/edu/blm/bean/OrderInformation.hbm.xml"/>
       <mapping class="cn.zucc.edu.blm.bean.OrderUndone"/>
       <mapping resource="cn/zucc/edu/blm/bean/OrderUndone.hbm.xml"/>
+      <mapping class="cn.zucc.edu.blm.bean.ShopEva"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

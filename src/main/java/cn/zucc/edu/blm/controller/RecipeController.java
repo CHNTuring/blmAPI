@@ -2,6 +2,7 @@ package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.RecipeDao;
 import cn.zucc.edu.blm.bean.Recipe;
+import cn.zucc.edu.blm.bean.ShopEvaluate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +19,17 @@ public class RecipeController {
 
     @GetMapping("/getRecipeList")
     public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId){
-        List lst=new ArrayList();
+        List<Recipe> lst=new ArrayList();
         lst=recipeDao.findByShopId(shopId);
+        for(int i=0;i<lst.size();i++){
+            lst.get(i).setRecipeImage(null);
+        }
         return  lst;
+    }
+
+    @GetMapping("/getRecipeImage")
+    public Recipe getRecipeImage(@RequestParam(value = "recipeId") int recipeId){
+        return recipeDao.findById(recipeId).orElse(null);
     }
 
     @GetMapping("/getRecipe")
@@ -39,4 +48,6 @@ public class RecipeController {
         }
         return response;
     }
+
+
 }

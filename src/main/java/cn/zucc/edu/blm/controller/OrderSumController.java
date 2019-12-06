@@ -31,4 +31,18 @@ public class OrderSumController {
     public OrderSum getOrderSumById(@RequestParam(value = "orderId")int orderId){
         return orderSumDao.findByOrderId(orderId);
     }
+
+    @GetMapping("/getOrderSumList")
+    public List<OrderSum> getOrderSumList(@RequestParam(value = "userId")int userId){
+        List<OrderSum> lst=orderSumDao.findByUserId(userId);
+        for (OrderSum orderSum : lst) {
+            orderSum.setShopTrademark(null);
+        }
+        return lst;
+    }
+
+    @GetMapping("/getOrderSumTrademark")
+    public OrderSum getOrderSumTrademark(@RequestParam(value = "orderId")int orderId){
+        return orderSumDao.findById(orderId).orElse(null);
+    }
 }
