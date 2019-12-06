@@ -86,7 +86,7 @@ public class OrderController {
 	public void updateOrderStatus(int orderId){
 		Orders orders=new Orders();
 		orders.setOrderId(orderId);
-		orders.setOrderStatus("收货");
+		orders.setOrderStatus("完成");
 		orderDao.save(orders);
 	}
 
