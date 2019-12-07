@@ -7,7 +7,9 @@ import cn.zucc.edu.blm.bean.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +39,18 @@ public class RecipeController {
     }
 
     @PostMapping("/addRecipe")
-    public String addRecipe(@RequestParam(value = "shopId") Integer shopId, @RequestParam(value = "recipeName") String recipeName,
-                            @RequestParam(value = "recipePrice") String recipePrice, @RequestParam(value = "recipeRemain") String recipeRemain,
-                            @RequestParam(value = "recipeDiscount") String recipeDiscount,@RequestParam(value = "recipeNotice") String recipeNotice
-                            /*@RequestParam(value = "recipeImage") MultipartFile recipeImage*/){
+    public String addRecipe(HttpServletRequest request) {
+        MultipartHttpServletRequest params = ((MultipartHttpServletRequest) request);
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("recipeImage");
+        MultipartFile recipeImage = null;
+        if (files.size() != 0)
+            recipeImage = files.get(0);
+        int shopId = Integer.valueOf(params.getParameter("shopId"));
+        String recipeName = params.getParameter("recipeName");
+        String recipePrice = params.getParameter("recipePrice");
+        String recipeRemain = params.getParameter("recipeRemain");
+        String recipeDiscount = params.getParameter("recipeDiscount");
+        String recipeNotice = params.getParameter("recipeNotice");
         Optional<Shop> shopOptional = shopDao.findById(shopId);
         if (shopOptional.isPresent()) {
             Double doublePrice = null;
@@ -48,20 +58,21 @@ public class RecipeController {
             Double doubleDiscount = null;
 
             try {
-                doublePrice = Double.valueOf(recipePrice);
-                intRemain = Integer.valueOf(recipeRemain);
-                doubleDiscount = Double.valueOf(recipeDiscount);
+                doublePrice = Double.valueOf(recipePrice.trim());
+                intRemain = Integer.valueOf(recipeRemain.trim());
+                doubleDiscount = Double.valueOf(recipeDiscount.trim());
             } catch (NumberFormatException | NullPointerException e) {
                 return ErrorsHandle.ADDRECIPE_FAILED;
             }
-            Recipe recipe=new Recipe();
+            Recipe recipe = new Recipe();
             recipe.setMonthlySale(0);
             recipe.setRecipeDiscount(doubleDiscount);
-            /*try {
-                recipe.setRecipeImage(new byte[recipeImage.getInputStream().available()]);
+            try {
+                if (recipeImage != null && recipeImage.getInputStream().available() != 0)
+                    recipe.setRecipeImage(new byte[recipeImage.getInputStream().available()]);
             } catch (IOException e) {
                 return ErrorsHandle.UPLOADIMAGE_FAILED;
-            }*/
+            }
 
             recipe.setRecipeName(recipeName);
             recipe.setRecipePrice(doublePrice);
@@ -73,4 +84,5 @@ public class RecipeController {
         }
         return ErrorsHandle.SUCCESS;
     }
+
 }

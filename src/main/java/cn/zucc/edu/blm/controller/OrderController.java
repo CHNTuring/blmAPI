@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by YL
@@ -63,4 +64,17 @@ public class OrderController {
 	public Orders getOrder(@RequestParam(value = "OrderId")int orderId){
 		return orderDao.findById(orderId).orElse(null);
 	}
+
+	@GetMapping("/finish")
+	public String finish(@RequestParam(value = "orderId") int orderId){
+		Optional<Orders> ordersOptional=orderDao.findById(orderId);
+		if (ordersOptional.isPresent()){
+			Orders order=ordersOptional.get();
+			order.setOrderStatus("待取");
+			orderDao.save(order);
+			return ErrorsHandle.SUCCESS;
+		}
+		return ErrorsHandle.ORDER_MISS;
+	}
+
 }

@@ -6,7 +6,10 @@ import cn.zucc.edu.blm.bean.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -91,18 +94,27 @@ public class ShopController {
     }
 
     @PostMapping("/shopInfoModify")
-    public Shop shopInfoModify(@RequestParam(value = "shopId") Integer shopId, @RequestParam(value = "shopName") String shopName,
-                               @RequestParam(value = "shopAddr") String shopAddr/*, @RequestParam(value = "shopTrademark") MultipartFile shopTrademark*/) {
+    public Shop shopInfoModify(HttpServletRequest request) {
+        MultipartHttpServletRequest params = ((MultipartHttpServletRequest) request);
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("shopTrademark");
+        MultipartFile shopTrademark = null;
+        if (files.size() != 0)
+            shopTrademark = files.get(0);
+        int shopId = Integer.valueOf(params.getParameter("shopId"));
+        String shopName = params.getParameter("shopName");
+        String shopAddr = params.getParameter("shopAddr");
+
         Optional<Shop> shopOptional = shopDao.findById(shopId);
         if (shopOptional.isPresent()) {
             Shop shop = shopOptional.get();
             shop.setShopAddress(shopAddr);
             shop.setShopName(shopName);
-            /*try {
-                shop.setShopTrademark(new byte[shopTrademark.getInputStream().available()]);
+            try {
+                if (shopTrademark != null && shopTrademark.getInputStream().available() != 0)
+                    shop.setShopTrademark(new byte[shopTrademark.getInputStream().available()]);
             } catch (IOException e) {
                 return null;
-            }*/
+            }
             return shopDao.save(shop);
         }
         return null;
