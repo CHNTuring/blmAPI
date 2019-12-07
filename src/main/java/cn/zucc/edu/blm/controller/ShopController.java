@@ -98,8 +98,9 @@ public class ShopController {
         MultipartHttpServletRequest params = ((MultipartHttpServletRequest) request);
         List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("shopTrademark");
         MultipartFile shopTrademark = null;
-        if (files.size() != 0)
+        if (files.size() != 0) {
             shopTrademark = files.get(0);
+        }
         int shopId = Integer.valueOf(params.getParameter("shopId"));
         String shopName = params.getParameter("shopName");
         String shopAddr = params.getParameter("shopAddr");
@@ -110,8 +111,11 @@ public class ShopController {
             shop.setShopAddress(shopAddr);
             shop.setShopName(shopName);
             try {
-                if (shopTrademark != null && shopTrademark.getInputStream().available() != 0)
-                    shop.setShopTrademark(new byte[shopTrademark.getInputStream().available()]);
+                if (shopTrademark != null && shopTrademark.getInputStream().available() != 0) {
+                    byte[] byteArray = new byte[shopTrademark.getInputStream().available()];
+                    shopTrademark.getInputStream().read(byteArray);
+                    shop.setShopTrademark(byteArray);
+                }
             } catch (IOException e) {
                 return null;
             }
@@ -120,19 +124,4 @@ public class ShopController {
         return null;
     }
 
-    @RequestMapping("/shopImageModify")
-    public String shopImageModify(MultipartFile file, String type) {
-        /*Optional<Shop> shopOptional = shopDao.findById(shopId);
-        if (shopOptional.isPresent()) {
-            Shop shop = shopOptional.get();
-            try {
-                shop.setShopTrademark(file.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return "图片修改成功";
-        }
-        return String.valueOf(file.isEmpty());*/
-        return "ok";
-    }
 }

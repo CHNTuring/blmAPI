@@ -39,18 +39,18 @@ public class RecipeController {
     }
 
     @PostMapping("/addRecipe")
-    public String addRecipe(HttpServletRequest request) {
+    public Recipe addRecipe(HttpServletRequest request) {
         MultipartHttpServletRequest params = ((MultipartHttpServletRequest) request);
-        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("recipeImage");
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("recipe_image");
         MultipartFile recipeImage = null;
         if (files.size() != 0)
             recipeImage = files.get(0);
         int shopId = Integer.valueOf(params.getParameter("shopId"));
-        String recipeName = params.getParameter("recipeName");
-        String recipePrice = params.getParameter("recipePrice");
-        String recipeRemain = params.getParameter("recipeRemain");
-        String recipeDiscount = params.getParameter("recipeDiscount");
-        String recipeNotice = params.getParameter("recipeNotice");
+        String recipeName = params.getParameter("recipe_name");
+        String recipePrice = params.getParameter("recipe_price");
+        String recipeRemain = params.getParameter("recipe_remain");
+        String recipeDiscount = params.getParameter("recipe_discount");
+        String recipeNotice = params.getParameter("recipe_notice");
         Optional<Shop> shopOptional = shopDao.findById(shopId);
         if (shopOptional.isPresent()) {
             Double doublePrice = null;
@@ -62,16 +62,19 @@ public class RecipeController {
                 intRemain = Integer.valueOf(recipeRemain.trim());
                 doubleDiscount = Double.valueOf(recipeDiscount.trim());
             } catch (NumberFormatException | NullPointerException e) {
-                return ErrorsHandle.ADDRECIPE_FAILED;
+                return null;
             }
             Recipe recipe = new Recipe();
             recipe.setMonthlySale(0);
             recipe.setRecipeDiscount(doubleDiscount);
             try {
-                if (recipeImage != null && recipeImage.getInputStream().available() != 0)
-                    recipe.setRecipeImage(new byte[recipeImage.getInputStream().available()]);
+                if (recipeImage != null && recipeImage.getInputStream().available() != 0) {
+                    byte[] byteArray = new byte[recipeImage.getInputStream().available()];
+                    recipeImage.getInputStream().read(byteArray);
+                    recipe.setRecipeImage(byteArray);
+                }
             } catch (IOException e) {
-                return ErrorsHandle.UPLOADIMAGE_FAILED;
+                return null;
             }
 
             recipe.setRecipeName(recipeName);
@@ -80,9 +83,9 @@ public class RecipeController {
             recipe.setShopId(shopId);
             recipe.setRecipeStatus("正常");
             recipe.setRecipeNotice(recipeNotice);
-            recipeDao.save(recipe);
+            return recipeDao.save(recipe);
         }
-        return ErrorsHandle.SUCCESS;
+        return null;
     }
 
 }
