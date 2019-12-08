@@ -20,7 +20,7 @@ public class RecipeController {
     @GetMapping("/getRecipeList")
     public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId){
         List<Recipe> lst=new ArrayList();
-        lst=recipeDao.findByShopId(shopId);
+        lst=recipeDao.findByShopIdAndRecipeStatus(shopId,"正常");
         for(int i=0;i<lst.size();i++){
             lst.get(i).setRecipeImage(null);
         }

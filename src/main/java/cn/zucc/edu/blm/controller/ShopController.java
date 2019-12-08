@@ -55,4 +55,8 @@ public class ShopController {
         return shopDao.findById(shopId).orElse(null);
     }
 
+    @GetMapping("/getMonthlyTrade")
+    public Integer getMonthlyTrade(@RequestParam(value = "shopId") int shopId){
+        return shopDao.monthlytrade(shopId);
+    }
 }
