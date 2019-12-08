@@ -22,15 +22,25 @@ public class ShopController {
     private ShopDao shopDao;
 
     @GetMapping("/getShopList")
-    public List<Shop> getShopList() {
-        List lst = new ArrayList();
-        lst = shopDao.findAll();
-        return lst;
+    public List<Shop> getShopList(){
+        List<Shop> lst;
+        lst=shopDao.findAll();
+        for(int i=0;i<lst.size();i++){
+            lst.get(i).setShopTrademark(null);
+        }
+        return  lst;
     }
+
+    @GetMapping("/getTrademarkById")
+    public byte[] getTrademarkById(@RequestParam(value = "shopId")int shopId){
+        Shop shop=shopDao.findById(shopId).orElse(null);
+        return shop.getShopTrademark();
+    }
+
 
     @GetMapping("/getShopIdList")
     public List<Integer> getShopIdList() {
-        List<Shop> lst = new ArrayList<Shop>();
+        List<Shop> lst;
         List<Integer> response = new ArrayList<>();
         lst = shopDao.findAll();
         for (Shop a : lst) {
@@ -41,7 +51,7 @@ public class ShopController {
     }
 
     @GetMapping("/getShopById")
-    public Shop getShopById(@RequestParam(value = "shopId") int shopId) {
+    public Shop getShopById(@RequestParam(value = "shopId") int shopId){
         return shopDao.findById(shopId).orElse(null);
     }
 
@@ -123,5 +133,12 @@ public class ShopController {
         }
         return null;
     }
+
+    @GetMapping("/getMonthlyTrade")
+    public Integer getMonthlyTrade(@RequestParam(value = "shopId") int shopId){
+        return shopDao.monthlytrade(shopId);
+    }
+
+
 
 }

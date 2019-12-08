@@ -7,10 +7,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "shop_eva", schema = "blm", catalog = "")
 public class ShopEva {
-    @Id
+
     private int userId;
     private String userName;
     private byte[] userImage;
+    @Id
     private int shopEvaluateId;
     private int shopId;
     private String shopEvaluateContent;
