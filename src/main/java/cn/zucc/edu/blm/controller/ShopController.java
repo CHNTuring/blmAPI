@@ -28,12 +28,12 @@ public class ShopController {
         for(int i=0;i<lst.size();i++){
             lst.get(i).setShopTrademark(null);
         }
-        return  lst;
+        return lst;
     }
 
     @GetMapping("/getTrademarkById")
-    public byte[] getTrademarkById(@RequestParam(value = "shopId")int shopId){
-        Shop shop=shopDao.findById(shopId).orElse(null);
+    public byte[] getTrademarkById(@RequestParam(value = "shopId") int shopId) {
+        Shop shop = shopDao.findById(shopId).orElse(null);
         return shop.getShopTrademark();
     }
 
@@ -51,7 +51,7 @@ public class ShopController {
     }
 
     @GetMapping("/getShopById")
-    public Shop getShopById(@RequestParam(value = "shopId") int shopId){
+    public Shop getShopById(@RequestParam(value = "shopId") int shopId) {
         return shopDao.findById(shopId).orElse(null);
     }
 
@@ -135,7 +135,7 @@ public class ShopController {
     }
 
     @GetMapping("/getMonthlyTrade")
-    public Integer getMonthlyTrade(@RequestParam(value = "shopId") int shopId){
+    public Integer getMonthlyTrade(@RequestParam(value = "shopId") int shopId) {
         return shopDao.monthlytrade(shopId);
     }
 

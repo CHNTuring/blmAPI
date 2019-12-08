@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
 import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/Activity")
@@ -16,7 +17,7 @@ public class ActivityController {
     private ActivityDao activityDao;
 
     @GetMapping("getActivitiesByShopId")
-    public List<Activity> getActivitiesByShopId(@RequestParam(value = "shopId")int shopId){
-        return  activityDao.findByShopId(shopId);
+    public List<Activity> getActivitiesByShopId(@RequestParam(value = "shopId") int shopId) {
+        return activityDao.findByShopId(shopId);
     }
 }

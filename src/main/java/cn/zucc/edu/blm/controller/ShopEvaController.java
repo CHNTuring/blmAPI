@@ -11,13 +11,13 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/ShopEvaController")
-public class ShopEvaController  {
+public class ShopEvaController {
 
     @Autowired
     private ShopEvaDao shopEvaDao;
 
     @GetMapping("/getShopEva")
-    public List<ShopEva> getShopEva(@RequestParam(value = "shopId")int shopId) {
+    public List<ShopEva> getShopEva(@RequestParam(value = "shopId") int shopId) {
         return shopEvaDao.findByShopId(shopId);
     }
 }

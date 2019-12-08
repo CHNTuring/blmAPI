@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ShopEvaDao extends JpaRepository<ShopEva,Integer> {
+public interface ShopEvaDao extends JpaRepository<ShopEva, Integer> {
 
     List<ShopEva> findByShopId(int shopId);
 }

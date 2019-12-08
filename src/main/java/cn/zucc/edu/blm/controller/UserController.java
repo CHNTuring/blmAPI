@@ -15,9 +15,9 @@ public class UserController {
     private UserDao userDao;
 
     @GetMapping("/getUser")
-    public User getUser(@RequestParam(value = "userId") int userId){
-        Optional optional =userDao.findById(userId);
-        return  (User) optional.orElse(null);
+    public User getUser(@RequestParam(value = "userId") int userId) {
+        Optional optional = userDao.findById(userId);
+        return (User) optional.orElse(null);
     }
 
 

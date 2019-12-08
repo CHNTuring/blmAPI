@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RecipeDao extends JpaRepository<Recipe,Integer> {
+public interface RecipeDao extends JpaRepository<Recipe, Integer> {
 
     public List<Recipe> findByShopId(int shopId);
 

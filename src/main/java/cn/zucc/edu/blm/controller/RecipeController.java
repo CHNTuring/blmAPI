@@ -32,10 +32,10 @@ public class RecipeController {
 
     @GetMapping("/getRecipeList")
     public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId) {
-        List<Recipe> lst;
+        List<Recipe> lst = new ArrayList();
         lst = recipeDao.findByShopIdAndRecipeStatus(shopId, "正常");
-        for (Recipe recipe : lst) {
-            recipe.setRecipeImage(null);
+        for (int i = 0; i < lst.size(); i++) {
+            lst.get(i).setRecipeImage(null);
         }
         return lst;
     }
@@ -47,6 +47,7 @@ public class RecipeController {
 
     @GetMapping("/getRecipe")
     public Recipe getRecipe(@RequestParam(value = "recipeId") int recipeId) {
+
         Optional optional = recipeDao.findById(recipeId);
         return (Recipe) optional.orElse(null);
     }

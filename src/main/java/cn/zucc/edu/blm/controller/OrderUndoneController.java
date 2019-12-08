@@ -17,15 +17,15 @@ public class OrderUndoneController {
     private OrderUndoneDao orderUndoneDao;
 
     @GetMapping("/getOrderUndoneList")
-    public List<OrderUndone> getOrderUndoneList(@RequestParam(value = "shopId")int shopId,@RequestParam(value = "orderId")int orderId){
-            return  orderUndoneDao.getOrderUndoneListdao(shopId,orderId);
+    public List<OrderUndone> getOrderUndoneList(@RequestParam(value = "shopId") int shopId, @RequestParam(value = "orderId") int orderId) {
+        return orderUndoneDao.getOrderUndoneListdao(shopId, orderId);
     }
 
     @GetMapping("/getOrderDoneList")
-    public List<OrderUndone> getOrderDoneList(@RequestParam(value = "shopId")int shopId){
-        List<OrderUndone> lst=new ArrayList<>();
-        lst=orderUndoneDao.findByShopIdAndOrderStatus(shopId,"待取");
-        lst.addAll(orderUndoneDao.findByShopIdAndOrderStatus(shopId,"完成"));
+    public List<OrderUndone> getOrderDoneList(@RequestParam(value = "shopId") int shopId) {
+        List<OrderUndone> lst = new ArrayList<>();
+        lst = orderUndoneDao.findByShopIdAndOrderStatus(shopId, "待取");
+        lst.addAll(orderUndoneDao.findByShopIdAndOrderStatus(shopId, "完成"));
         return lst;
     }
 }

@@ -18,23 +18,23 @@ public class OrderSumController {
     private OrderSumDao orderSumDao;
 
     @GetMapping("/getOrderSumIdList")
-    public List<Integer> getOrderSumIdList(@RequestParam(value = "userId")int userId){
-        List<Integer> response=new ArrayList<>();
-        List<OrderSum> lst=orderSumDao.findByUserId(userId);
-        for(OrderSum a:lst){
+    public List<Integer> getOrderSumIdList(@RequestParam(value = "userId") int userId) {
+        List<Integer> response = new ArrayList<>();
+        List<OrderSum> lst = orderSumDao.findByUserId(userId);
+        for (OrderSum a : lst) {
             response.add(a.getOrderId());
         }
         return response;
     }
 
     @GetMapping("/getOrderSumById")
-    public OrderSum getOrderSumById(@RequestParam(value = "orderId")int orderId){
+    public OrderSum getOrderSumById(@RequestParam(value = "orderId") int orderId) {
         return orderSumDao.findByOrderId(orderId);
     }
 
     @GetMapping("/getOrderSumList")
-    public List<OrderSum> getOrderSumList(@RequestParam(value = "userId")int userId){
-        List<OrderSum> lst=orderSumDao.findByUserId(userId);
+    public List<OrderSum> getOrderSumList(@RequestParam(value = "userId") int userId) {
+        List<OrderSum> lst = orderSumDao.findByUserId(userId);
         for (OrderSum orderSum : lst) {
             orderSum.setShopTrademark(null);
         }
@@ -42,7 +42,7 @@ public class OrderSumController {
     }
 
     @GetMapping("/getOrderSumTrademark")
-    public OrderSum getOrderSumTrademark(@RequestParam(value = "orderId")int orderId){
+    public OrderSum getOrderSumTrademark(@RequestParam(value = "orderId") int orderId) {
         return orderSumDao.findById(orderId).orElse(null);
     }
 }

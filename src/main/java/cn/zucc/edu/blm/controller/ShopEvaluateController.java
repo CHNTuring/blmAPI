@@ -14,10 +14,10 @@ public class ShopEvaluateController {
     private ShopEvaluateDao shopEvaluateDao;
 
     @GetMapping("/addShopEvaluate")
-    public void addShopEvaluate(@RequestParam(value = "shopId")int shopId, @RequestParam(value = "orderId")int orderId,
-                                @RequestParam(value = "shopGrade")double shopGrade, @RequestParam(value = "userId")int userId,
-                                @RequestParam(value = "shopEvaluateContent")String shopEvaluateContent){
-        ShopEvaluate shopEvaluate=new ShopEvaluate();
+    public void addShopEvaluate(@RequestParam(value = "shopId") int shopId, @RequestParam(value = "orderId") int orderId,
+                                @RequestParam(value = "shopGrade") double shopGrade, @RequestParam(value = "userId") int userId,
+                                @RequestParam(value = "shopEvaluateContent") String shopEvaluateContent) {
+        ShopEvaluate shopEvaluate = new ShopEvaluate();
         shopEvaluate.setShopId(shopId);
         shopEvaluate.setUserId(userId);
         shopEvaluate.setShopEvaluateContent(shopEvaluateContent);

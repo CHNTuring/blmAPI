@@ -16,7 +16,7 @@ public class OrderInformationController {
     private OrderInformationDao orderInformationDao;
 
     @GetMapping("/getOrderInformationList")
-    public List<OrderInformation> getOrderInformationList(@RequestParam(value = "orderId")int orderId){
-            return orderInformationDao.findByOrderId(orderId);
+    public List<OrderInformation> getOrderInformationList(@RequestParam(value = "orderId") int orderId) {
+        return orderInformationDao.findByOrderId(orderId);
     }
 }

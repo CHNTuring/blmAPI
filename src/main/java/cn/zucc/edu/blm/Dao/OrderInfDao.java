@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OrderInfDao extends JpaRepository<OrderInf,Integer> {
-    public List<OrderInf> findByOrderId (int orderId);
+public interface OrderInfDao extends JpaRepository<OrderInf, Integer> {
+    public List<OrderInf> findByOrderId(int orderId);
 }

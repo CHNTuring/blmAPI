@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface OrderDao extends JpaRepository<Orders,Integer> {
+public interface OrderDao extends JpaRepository<Orders, Integer> {
 
     List<Orders> findByUserId(int userId);
 
@@ -15,7 +15,11 @@ public interface OrderDao extends JpaRepository<Orders,Integer> {
 
     List<Orders> findByOrderStatus(String status);
 
+    @Query(value = "SELECT MAX(temporary_id) FROM orders WHERE shop_id", nativeQuery = true)
+    Integer getMaxTemp(int shopId);
     @Query(value = "select COUNT(*) from orders where shop_id=?1 and DATEDIFF(NOW(), order_start_time)<?2 and order_status='完成'", nativeQuery = true)
     Optional<Integer> findCountByDays(int shopId, int days);
 
+    @Query(value = "SELECT MAX(order_id) FROM orders", nativeQuery = true)
+    Integer getMaxOrderId();
 }
