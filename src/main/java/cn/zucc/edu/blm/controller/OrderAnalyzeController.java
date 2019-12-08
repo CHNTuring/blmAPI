@@ -2,8 +2,10 @@ package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.OrderDao;
 import cn.zucc.edu.blm.Dao.OrderSumDao;
+import cn.zucc.edu.blm.Dao.RecipeDao;
 import cn.zucc.edu.blm.analyzeBean.OrderAnalyze;
 import cn.zucc.edu.blm.analyzeBean.RecipeAnalyze;
+import cn.zucc.edu.blm.bean.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ public class OrderAnalyzeController {
     private OrderDao dao;
     @Autowired
     private OrderSumDao sumDao;
+    @Autowired
+    private RecipeDao recipeDao;
 
     /**
      * 获得昨天、7天、半个月、一个月该店家销售量和金额
@@ -59,8 +63,17 @@ public class OrderAnalyzeController {
      */
     @GetMapping("getORecipeAnalyzeByShopId")
     public List<RecipeAnalyze> getRecipeAnalyzeByShopId(@RequestParam(value = "shopId")int shopId){
-
-        return null;
+        List<Recipe> recipes = recipeDao.findByShopId(shopId);
+        List<RecipeAnalyze> result = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            if (recipe.getMonthlySale() == 0)
+                continue;
+            RecipeAnalyze analyze = new RecipeAnalyze();
+            analyze.setRecipeName(recipe.getRecipeName());
+            analyze.setCount(recipe.getMonthlySale());
+            result.add(analyze);
+        }
+        return result;
     }
 
     @GetMapping("getCountByDayOfMonth")

@@ -33,9 +33,15 @@ public class RecipeController {
 
     @GetMapping("/getRecipe")
     public Recipe getRecipe(@RequestParam(value = "recipeId") int recipeId){
-
         Optional optional=recipeDao.findById(recipeId);
         return  (Recipe) optional.orElse(null);
+    }
+
+    @GetMapping("/getRecipeListNotDel")
+    public List<Recipe> getRecipeListNotDel(@RequestParam(value = "shopId") int shopId) {
+        List lst = new ArrayList();
+        lst = recipeDao.findByShopIdAndRecipeStatus(shopId,"正常");
+        return lst;
     }
 
     @PostMapping("/addRecipe")
@@ -86,6 +92,18 @@ public class RecipeController {
             return recipeDao.save(recipe);
         }
         return null;
+    }
+
+    @GetMapping("/deleteRecipe")
+    public String delete(@RequestParam(value = "recipeId") int recipeId){
+        Optional<Recipe> optional = recipeDao.findById(recipeId);
+        if (optional.isPresent()){
+            Recipe recipe=optional.get();
+            recipe.setRecipeStatus("删除");
+            recipeDao.save(recipe);
+            return ErrorsHandle.SUCCESS;
+        }
+        return ErrorsHandle.DELRECIPE_FAILED;
     }
 
 }
