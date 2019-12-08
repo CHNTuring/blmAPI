@@ -5,9 +5,14 @@ import cn.zucc.edu.blm.Dao.ShopDao;
 import cn.zucc.edu.blm.bean.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -49,4 +54,5 @@ public class ShopController {
     public Shop getShopById(@RequestParam(value = "shopId") int shopId){
         return shopDao.findById(shopId).orElse(null);
     }
+
 }
