@@ -24,39 +24,38 @@ public class RecipeController {
     @Autowired
     private ShopDao shopDao;
 
-    @GetMapping("/getRecipeList")
-    public List<Recipe> getAllRecipeList(@RequestParam(value = "shopId") int shopId){
-        List lst=new ArrayList();
-        lst=recipeDao.findByShopId(shopId);
-        return  lst;
+    @GetMapping("/getAllRecipeList")
+    public List<Recipe> getAllRecipeList(@RequestParam(value = "shopId") int shopId) {
+        List lst = recipeDao.findByShopIdAndRecipeStatus(shopId, "正常");
+        return lst;
     }
 
     @GetMapping("/getRecipeList")
-    public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId){
-        List<Recipe> lst=new ArrayList();
-        lst=recipeDao.findByShopIdAndRecipeStatus(shopId,"正常");
-        for(int i=0;i<lst.size();i++){
-            lst.get(i).setRecipeImage(null);
+    public List<Recipe> getRecipeList(@RequestParam(value = "shopId") int shopId) {
+        List<Recipe> lst;
+        lst = recipeDao.findByShopIdAndRecipeStatus(shopId, "正常");
+        for (Recipe recipe : lst) {
+            recipe.setRecipeImage(null);
         }
-        return  lst;
+        return lst;
     }
 
     @GetMapping("/getRecipeImage")
-    public Recipe getRecipeImage(@RequestParam(value = "recipeId") int recipeId){
+    public Recipe getRecipeImage(@RequestParam(value = "recipeId") int recipeId) {
         return recipeDao.findById(recipeId).orElse(null);
     }
 
     @GetMapping("/getRecipe")
-    public Recipe getRecipe(@RequestParam(value = "recipeId") int recipeId){
-        Optional optional=recipeDao.findById(recipeId);
-        return  (Recipe) optional.orElse(null);
+    public Recipe getRecipe(@RequestParam(value = "recipeId") int recipeId) {
+        Optional optional = recipeDao.findById(recipeId);
+        return (Recipe) optional.orElse(null);
     }
 
     @GetMapping("/getRecipeIdList")
-    public  List<Integer> getRecipeIdList(@RequestParam(value = "shopId") int shopId){
-        List<Integer> response=new ArrayList<>();
-        List<Recipe> lst=recipeDao.findByShopId(shopId);
-        for(Recipe a:lst){
+    public List<Integer> getRecipeIdList(@RequestParam(value = "shopId") int shopId) {
+        List<Integer> response = new ArrayList<>();
+        List<Recipe> lst = recipeDao.findByShopId(shopId);
+        for (Recipe a : lst) {
             response.add(a.getRecipeId());
         }
         return response;
@@ -113,10 +112,10 @@ public class RecipeController {
     }
 
     @GetMapping("/deleteRecipe")
-    public String delete(@RequestParam(value = "recipeId") int recipeId){
+    public String delete(@RequestParam(value = "recipeId") int recipeId) {
         Optional<Recipe> optional = recipeDao.findById(recipeId);
-        if (optional.isPresent()){
-            Recipe recipe=optional.get();
+        if (optional.isPresent()) {
+            Recipe recipe = optional.get();
             recipe.setRecipeStatus("删除");
             recipeDao.save(recipe);
             return ErrorsHandle.SUCCESS;

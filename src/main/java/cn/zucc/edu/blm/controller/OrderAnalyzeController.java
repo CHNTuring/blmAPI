@@ -27,7 +27,7 @@ public class OrderAnalyzeController {
      * 获得昨天、7天、半个月、一个月该店家销售量和金额
      */
     @GetMapping("getOrderAnalyzeByShopId")
-    public List<OrderAnalyze> getOrderAnalyzeByShopId(@RequestParam(value = "shopId")int shopId){
+    public List<OrderAnalyze> getOrderAnalyzeByShopId(@RequestParam(value = "shopId") int shopId) {
         List<OrderAnalyze> result = new ArrayList<>();
 
         OrderAnalyze order_yesterday = new OrderAnalyze();
@@ -62,7 +62,7 @@ public class OrderAnalyzeController {
      * 获得一个月该店家各菜谱销售数量
      */
     @GetMapping("getORecipeAnalyzeByShopId")
-    public List<RecipeAnalyze> getRecipeAnalyzeByShopId(@RequestParam(value = "shopId")int shopId){
+    public List<RecipeAnalyze> getRecipeAnalyzeByShopId(@RequestParam(value = "shopId") int shopId) {
         List<Recipe> recipes = recipeDao.findByShopId(shopId);
         List<RecipeAnalyze> result = new ArrayList<>();
         for (Recipe recipe : recipes) {
@@ -77,7 +77,7 @@ public class OrderAnalyzeController {
     }
 
     @GetMapping("getCountByDayOfMonth")
-    public List<Integer> getCountByDayOfMonth(@RequestParam(value = "shopId")int shopId){
+    public List<Integer> getCountByDayOfMonth(@RequestParam(value = "shopId") int shopId) {
         List<Integer> result = new ArrayList<>();
         int days = 30, count = 0;
         for (int i = 1; i <= days; i++) {
