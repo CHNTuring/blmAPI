@@ -24,8 +24,13 @@ public class OrderUndoneController {
     @GetMapping("/getOrderDoneList")
     public List<OrderUndone> getOrderDoneList(@RequestParam(value = "shopId") int shopId) {
         List<OrderUndone> lst = new ArrayList<>();
+        List<OrderUndone> lst2 = new ArrayList<>();
         lst = orderUndoneDao.findByShopIdAndOrderStatus(shopId, "待取");
         lst.addAll(orderUndoneDao.findByShopIdAndOrderStatus(shopId, "完成"));
-        return lst;
+        for(OrderUndone orderUndone:lst){
+            orderUndone.setRecipeImage(null);
+            lst2.add(orderUndone);
+        }
+        return lst2;
     }
 }

@@ -11,7 +11,7 @@ public interface ShopDao extends JpaRepository<Shop, Integer> {
     Shop findShopByShopTel(String shopTel);
 
     @Query(value = "select count(*) from orders where shop_id= ?1", nativeQuery = true)
-    public Integer monthlytrade(int shopId);
+    Integer monthlytrade(int shopId);
 
 
 }
