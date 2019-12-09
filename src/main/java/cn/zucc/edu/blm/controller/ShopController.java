@@ -69,12 +69,7 @@ public class ShopController {
 
     @GetMapping("/login")
     public Shop login(@RequestParam(value = "shopTel") String shopTel, @RequestParam(value = "shopPwd") String shopPwd) {
-        Shop shop = shopDao.findShopByShopTelAndShopPwd(shopTel, shopPwd);
-        if (shop != null) {
-            shop.setShopStatus("在线");
-            return shopDao.save(shop);
-        }
-        return null;
+        return shopDao.findShopByShopTelAndShopPwd(shopTel, shopPwd);
     }
 
     @GetMapping("/register")  //自增问题
@@ -139,6 +134,28 @@ public class ShopController {
         return shopDao.monthlytrade(shopId);
     }
 
+    @GetMapping("/logout")
+    public String logout(@RequestParam(value = "shopId") int shopId){
+        Optional<Shop> shopOptional = shopDao.findById(shopId);
+        if (shopOptional.isPresent()) {
+            Shop shop = shopOptional.get();
+            shop.setShopStatus("离线");
+            shopDao.save(shop);
+            return ErrorsHandle.SUCCESS;
+        }
+        return null;
+    }
 
+    @GetMapping("/viewOrders")
+    public String viewOrders(@RequestParam(value = "shopId") Integer shopId) {
+        Optional<Shop> shopOptional = shopDao.findById(shopId);
+        if (shopOptional.isPresent()) {
+            Shop shop = shopOptional.get();
+            shop.setShopStatus("在线");
+            shopDao.save(shop);
+            return ErrorsHandle.SUCCESS;
+        }
+        return null;
+    }
 
 }
