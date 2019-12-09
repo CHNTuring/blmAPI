@@ -48,23 +48,28 @@ public class OrderInfController {
         Optional<Recipe> optionalRecipe = recipeDao.findById(recipe_id);
         if (optionalRecipe.isPresent()) {
             Recipe recipe = optionalRecipe.get();
-            recipe.setMonthlySale(recipe.getMonthlySale() + order_recipe_number);
+            int remain = recipe.getRecipeRemain();
             if (recipe.getRecipeRemain() < order_recipe_number) {
                 List<OrderInf> deleteOrderInfList = orderInfDao.findByOrderId(order_id);
                 for (OrderInf deleteOrderInf : deleteOrderInfList) {
                     Recipe deleteRecipe = recipeDao.findById(deleteOrderInf.getRecipeId()).orElse(null);
                     deleteRecipe.setMonthlySale(deleteRecipe.getMonthlySale() - order_recipe_number);
                     deleteRecipe.setRecipeRemain(deleteRecipe.getRecipeRemain() + order_recipe_number);
+                    deleteRecipe.setRecipeStatus("正常");
                     recipeDao.save(deleteRecipe);
+
+                    orderInfDao.delete(deleteOrderInf);
                 }
                 orderDao.deleteById(order_id);
-
+                recipe.setRecipeRemain(remain);
+                recipeDao.save(recipe);
                 return recipe_id;
             }
-            recipe.setRecipeRemain(recipe.getRecipeRemain() - order_recipe_number);
             if (recipe.getRecipeRemain() == order_recipe_number) {
                 recipe.setRecipeStatus("售罄");
             }
+            recipe.setMonthlySale(recipe.getMonthlySale() + order_recipe_number);
+            recipe.setRecipeRemain(recipe.getRecipeRemain() - order_recipe_number);
             recipeDao.save(recipe);
 
         }
