@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ShopDao extends JpaRepository<Shop, Integer> {
 
-    Shop findShopByShopTelAndShopPwd(String shopTel,String shopPwd);
+    Shop findShopByShopTelAndShopPwd(String shopTel, String shopPwd);
 
     Shop findShopByShopTel(String shopTel);
 
-    @Query(value = "select count(*) from orders where shop_id= ?1",nativeQuery = true)
+    @Query(value = "select count(*) from orders where shop_id= ?1", nativeQuery = true)
     public Integer monthlytrade(int shopId);
+
 
 }
