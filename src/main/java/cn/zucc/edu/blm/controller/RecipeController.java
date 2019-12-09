@@ -124,4 +124,51 @@ public class RecipeController {
         return ErrorsHandle.DELRECIPE_FAILED;
     }
 
+    @PostMapping("/modifyRecipe")
+    public String modifyRecipe(HttpServletRequest request) {
+        MultipartHttpServletRequest params = (MultipartHttpServletRequest) request;
+        List<MultipartFile> files = params.getFiles("recipe_image");
+        MultipartFile recipeImage = null;
+        if (files.size() != 0)
+            recipeImage = files.get(0);
+        int recipeId = Integer.valueOf(params.getParameter("recipeId"));
+        String recipeName = params.getParameter("recipe_name");
+        String recipePrice = params.getParameter("recipe_price");
+        String recipeRemain = params.getParameter("recipe_remain");
+        String recipeDiscount = params.getParameter("recipe_discount");
+        String recipeNotice = params.getParameter("recipe_notice");
+        Optional<Recipe> optionalRecipe = recipeDao.findById(recipeId);
+        if (optionalRecipe.isPresent()) {
+            Double doublePrice = null;
+            Integer intRemain = null;
+            Double doubleDiscount = null;
+
+            try {
+                doublePrice = Double.valueOf(recipePrice.trim());
+                intRemain = Integer.valueOf(recipeRemain.trim());
+                doubleDiscount = Double.valueOf(recipeDiscount.trim());
+            } catch (NumberFormatException | NullPointerException e) {
+                return ErrorsHandle.ADDRECIPE_FAILED;
+            }
+            Recipe recipe = optionalRecipe.get();
+            recipe.setRecipeDiscount(doubleDiscount);
+            try {
+                if (recipeImage != null && recipeImage.getInputStream().available() != 0) {
+                    byte[] byteArray = new byte[recipeImage.getInputStream().available()];
+                    recipeImage.getInputStream().read(byteArray);
+                    recipe.setRecipeImage(byteArray);
+                }
+            } catch (IOException e) {
+                return ErrorsHandle.UPLOADIMAGE_FAILED;
+            }
+
+            recipe.setRecipeName(recipeName);
+            recipe.setRecipePrice(doublePrice);
+            recipe.setRecipeRemain(intRemain);
+            recipe.setRecipeNotice(recipeNotice);
+            recipeDao.save(recipe);
+        }
+        return ErrorsHandle.SUCCESS;
+    }
+
 }

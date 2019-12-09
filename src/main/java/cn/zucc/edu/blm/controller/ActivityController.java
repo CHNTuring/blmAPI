@@ -5,7 +5,6 @@ import cn.zucc.edu.blm.bean.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
 import java.util.List;
 
 @RestController
