@@ -1,7 +1,9 @@
 package cn.zucc.edu.blm.controller;
 
 import cn.zucc.edu.blm.Dao.OrderDao;
+import cn.zucc.edu.blm.Dao.ShopDao;
 import cn.zucc.edu.blm.bean.Orders;
+import cn.zucc.edu.blm.bean.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,9 @@ public class OrderController {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private ShopDao shopDao;
 
     @GetMapping("/getOrderList")
     public List<Orders> getOrderList(@RequestParam(value = "userId") int userId) {
@@ -67,17 +72,18 @@ public class OrderController {
         return orderDao.findById(orderId).orElse(null);
     }
 
-	@GetMapping("/finish")
-	public String finish(@RequestParam(value = "orderId") int orderId){
-		Optional<Orders> ordersOptional=orderDao.findById(orderId);
-		if (ordersOptional.isPresent()){
-			Orders order=ordersOptional.get();
-			order.setOrderStatus("待取");
-			orderDao.save(order);
-			return ErrorsHandle.SUCCESS;
-		}
-		return ErrorsHandle.ORDER_MISS;
-	}
+    @GetMapping("/finish")
+    public String finish(@RequestParam(value = "orderId") int orderId) {
+        Optional<Orders> ordersOptional = orderDao.findById(orderId);
+        if (ordersOptional.isPresent()) {
+            Orders order = ordersOptional.get();
+            order.setOrderStatus("待取");
+            orderDao.save(order);
+            return ErrorsHandle.SUCCESS;
+        }
+        return ErrorsHandle.ORDER_MISS;
+    }
+
     @GetMapping("/addOrders")
     public Integer addOrders(@RequestParam(value = "shopId") int shopId, @RequestParam(value = "userId") int userId, @RequestParam(value = "orderRemark") String orderRemark) {
         Orders orders = new Orders();
