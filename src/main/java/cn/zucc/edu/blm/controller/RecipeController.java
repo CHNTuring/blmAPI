@@ -55,7 +55,7 @@ public class RecipeController {
     @GetMapping("/getRecipeIdList")
     public List<Integer> getRecipeIdList(@RequestParam(value = "shopId") int shopId) {
         List<Integer> response = new ArrayList<>();
-        List<Recipe> lst = recipeDao.findByShopId(shopId);
+        List<Recipe> lst = recipeDao.findByShopIdAndRecipeStatus(shopId, "正常");
         for (Recipe a : lst) {
             response.add(a.getRecipeId());
         }
